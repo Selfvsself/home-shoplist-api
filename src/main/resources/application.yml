@@ -1,0 +1,18 @@
+server:
+  port: ${SERVER_PORT}
+keycloak:
+  auth-server-url: http://${KEYCLOAK_HOST}:${KEYCLOAK_PORT}/auth
+  realm: ${KEYCLOAK_REALM}
+  resource: ${KEYCLOAK_CLIENT}
+  bearer-only: true
+  security-constraints:
+    - authRoles:
+        - uma_authorization
+      securityCollections:
+        - patterns:
+            - /api/*
+
+spring.datasource:
+  url: jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}?useUnicode=yes&characterEncoding=UTF-8&allowpublickeyretrieval=true
+  username: ${DATABASE_USER}
+  password: ${DATABASE_PASSWORD}
